@@ -519,7 +519,7 @@ A continuación se describen las tecnologías utilizadas para realizar este proyec
 
 \end{itemize}
 
-Posee una modalidad gratuita con limitaciones en los accesos y usos de CPU. Estas limitaciones crecen o desaparecen en las opciones de pago.
+Utilizaremos la modalidad gratuita con limitaciones en los accesos y usos de CPU pero con un margen mas que amplio para nosotros. Estas limitaciones crecen o desaparecen en las opciones de pago.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -529,12 +529,48 @@ Posee una modalidad gratuita con limitaciones en los accesos y usos de CPU. Esta
 \cleardoublepage
 \chapter{Diseño e implementación}
 \label{chap:diseno}
-
+Este capitulo describe las fases de desarrollo del proyecto, describe los módulos por lo que está formado el proyecto y se describe su funcionamiento.
 \section{Arquitectura general} 
 \label{sec:arquitectura}
 
+La base de este proyecto es el modelo cliente-servidor. En este modelo existen dos actores con funciones diferenciadas: el cliente elabora las peticiones y las envía al servidor, pasando a esperar una respuesta; el servidor, que tiene como misión atender dichas peticiones, generar la respuesta correspondiente a dicha petición y devolverla al cliente. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[ width=4cm, keepaspectratio]{img/cliserbd}
+    \caption{Modelo cliente servidor}
+    \label{figura: Modelo cliente-servidor}
+ \end{figure}Podemos considerar un tercer actor que a efectos prácticos es una abstracción del servidor, es el servidor de datos o la base de datos, donde se almacenan y se sirven los datos que el servidor procesa en la elaboración de respuestas. En este caso el servidor pasa a comportarse como cliente de la base de datos y la base de datos toma el rol de servidor. La separación entre servidor y base de datos no está condicionada a una separación física y pueden estar alojados en la misma máquina.
 
+\subsection{El cliente}
+\label{subsec:cliente}
+El \textbf{cliente} es el navegador web mediante el que el usuario de la aplicación accede a ella. Este se encarga de procesar la solicitudes del usuario que realiza escribiendo urls o pulsando en enlaces o botones. Estas acciones son transformadas por el cliente en peticiones \emph{HTTP} que envía al servidor pasando a esperar la respuesta del mismo. Una vez que recibe la respuesta la procesa y muestra al usuario.
 
+\subsection{El servidor}
+\label{subsec:servidor}
+El \textbf{ servidor} es el lugar donde podemos encontrar toda la lógica de la aplicación. Para la fase de desarrollo \textbf{Django} incorpora un servidor de desarrollo, ligero y escrito en \textbf{Python}. Este Servidor no se debe utilizar en entornos de producción ya que no es para lo que está pensado. El servidor de Django está pensado para escuchar conexiones locales, puede configurarse para que se comporte de manera diferente pero no es recomendable. Este servidor recibe una petición, mediante el archivo urls.py determina que información se está solicitando, para componer la respuesta consulta el archivo views.py que contiene la lógica de la aplicación, solicita información la base de datos si es preciso y  devuelve el código \textbf{HTML} que se debe enviar al cliente. Para ejecutar el servidor de desarrollo de Django basta con ejecutar desde la shell la orden \emph{python manage.py runserver 8000} en el directorio de nuestro proyecto Django.
+ 
+\subsection{La base de datos}
+\label{subsec:basededatos}
+la \textbf{base de datos} en nuestro caso se encuetra en el mismo equipo que el servidor, tanto en la fase de desarrollo como en la de despliegue y puesta en producción. \textbf{Django} proporciona compatibilidad con un gran número de tecnologías de bases de datos. En nuestro caso como la aplicación se basa en entrada y salida de texto elegimos una opción de fácil sintaxis y totalmente integrada dentro de Django como es \emph{SQLite3}.
+
+\section{Desarrollo de la aplicación} 
+\label{sec:desarrollo}
+A continuación se describen las diferentes fases que se han ido completando a medida que se avanzaba en el desarrollo de la aplicación.
+\subsection{Documentación}
+\label{subsec:documentacion}
+Una vez decidido el objetivo con el que se construirá la aplicación el primer paso, como en todo proyecto, es el de documentarse tanto sobre las aplicaciones similares disponibles, si existen, como de las tecnologías necesarias para realizar la aplicación. La cantidad de contenido que se puede encontrar en internet sobre todas las tecnologías utilizadas facilita conseguir información, pero lo hace laborioso a la hora de seleccionar lo que nos interesa. Posteriormente se instala Django y se prepara el entorno de programación adecuado para elaborar el proyecto.
+
+\subsection{Diseño de la base de datos}
+\label{subsec:disenobd}
+Un objetivo básico de toda aplicación es el manejo de datos, en mayor o menor medida, de manera rápida y eficiente. Tener una base de datos estructurada de manera correcta es imprescindible para poder hacerlo.
+Buscamos que los recursos importantes solo sean accesibles para los usuarios registrados, por esto creamos un modelo que hereda de la clase \emph{Users} predefinida de Django y le añadimos el campo \emph{id\_grado}. Esto nos facilita la tarea de trabajar con los datos y formularios de creación de cuentas y autenticación en el sistema. La tabla \emph{grados} contiene los diferentes grados que se imparten en la URJC y se utilizan para definir el Grado que estudia o ha estudiado el usuario.
+
+En lo referente a las \textbf{empresas} sobre las que se realizarán encuestas tenemos una tabla con el nombre de la misma, el departamento, nombre del tutor y la dirección para obtener su ubicación.
+
+Para las \textbf{encuestas} que reflejan las opiniones de los usuarios sobre sus experiencias en prácticas tenemos la taba \emph{encuestas}. Esta contiene todos los campos que se recopilan mediante una formulario en varios pasos.
+
+\subsection{Registro y Login de los usuarios}
+\label{subsec:registroylog}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -556,6 +592,7 @@ Posee una modalidad gratuita con limitaciones en los accesos y usos de CPU. Esta
 \cleardoublepage
 \chapter{Conclusiones}
 \label{chap:conclusiones}
+ En nuestro caso el \emph{framework} \textbf{Django} cumple todos los requisitos para crear nuestra aplicación ya que se trata de una herramienta que ya hemos utilizado previamente. Esto no evita que debamos pasar unas cuantas horas actualizando e incrementado nuestros conocimientos de la herramienta. Con \textbf{HTML5} tampoco ha habido grandes problemas una vez que se han. El esfuerzo en esta fase viene provocado por el escaso conocimiento del  \emph{framework} \textbf{Bootstrap} que en los primeros pasos puede ser algo mas complejo de lo que termina siendo una vez que se manejan bien un par de conceptos. Otro desafío ha sido actualizar los conocimientos 
 
 
 \section{Consecución de objetivos}
