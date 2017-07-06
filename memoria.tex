@@ -103,7 +103,7 @@ Tutor : Dr. Gregorio Robles
 
 \vspace{1cm}
 \large
-APLICACIÖN WEB SOPA: SISTEMA DE OPINION DE PRACTICAS DE ALUMNOS
+APLICACIÓN WEB SOPA: SISTEMA DE OPINION DE PRACTICAS DE ALUMNOS
 
 \vspace{1cm}
 \large
@@ -560,7 +560,7 @@ Una vez decidido el objetivo con el que se construirá la aplicación el primer pa
 \subsection{Diseño de la base de datos}
 \label{subsec:disenobd}
 Un objetivo básico de toda aplicación es el manejo de datos, en mayor o menor medida, de manera rápida y eficiente. Tener una base de datos estructurada de manera correcta es imprescindible para poder hacerlo.
-Se busca que los recursos importantes solo sean accesibles para los usuarios registrados, por esto se crea un modelo que hereda de la clase \emph{Users} predefinida de Django y le se le añade el campo \emph{id\_grado}. Esto facilita la tarea de trabajar con los datos y formularios de creación de cuentas y autenticación en el sistema. La tabla \emph{grados} contiene los diferentes grados que se imparten en la URJC y se utilizan para definir el Grado que estudia o ha estudiado el usuario.
+Se busca que los recursos importantes solo sean accesibles para los usuarios registrados, por esto se crea un modelo que hereda de la clase \emph{Users} predefinida de Django y le se le añade el campo \emph{grado}. Esto facilita la tarea de trabajar con los datos y formularios de creación de cuentas y autenticación en el sistema. 
 
 En lo referente a las \textbf{empresas} sobre las que se realizarán encuestas se dispone de una tabla con el nombre de la misma, el departamento, nombre del tutor y la dirección para obtener su ubicación.
 
@@ -583,25 +583,32 @@ Una vez que el usuario se ha registrado en el sistema tiene la opción de identif
 
 \begin{figure}[H]
     \centering
-    \includegraphics[ width=7cm, keepaspectratio]{img/login}
+    \includegraphics[ width=8cm, keepaspectratio]{img/login}
     \caption{Formulario de identificación en el sistema}
     \label{figura: Formulario de identificacion en el sistema}
  \end{figure}
  
  El usuario dispone de una sección con los datos de su cuenta a la que puede acceder desde la barra de navegación en la sección \emph{Mi perfil}. Desde esta página puede consultar y eliminar las encuestas que ha realizado. En la sección \emph{Usuarios} se muestra una lista de usuarios donde se indican su nick, nombre y apellidos y por cada uno un botón para acceder al detalle de ese usuario. En ese detalle se suman los estudios y encuestas que que el usuario ha creado, con botones para acceder al detalle de la misma y para crear una encuesta con datos similares de empresa, departamento y tutor.
- \begin{figure}[H]
+ \begin{figure}[h]
     \centering
-    \includegraphics[ width=10cm, keepaspectratio]{img/profile}
+    \includegraphics[ width=14cm, keepaspectratio]{img/profile}
     \caption{Perifl del usuario en el sistema}
     \label{figura: Perfil del usuario en el sistema}
  \end{figure}
- 
-\begin{figure}[H]
+ \begin{figure}[H]
     \centering
     \includegraphics[ width=10cm, keepaspectratio]{img/listalumn}
     \caption{Lista de usuarios registrados}
     \label{figura: listaalumn}
  \end{figure}
+ \begin{figure}[H]
+    \centering
+    \includegraphics[ width=10cm, keepaspectratio]{img/editprofile}
+    \caption{Edición del perifl de usuario en el sistema}
+    \label{figura: edicionperfil}
+ \end{figure}
+ 
+
  
 \subsection{Creación de perfiles de empresas}
 \label{subsec:registroemp}
@@ -615,13 +622,15 @@ Tras completar la fase de creación de cuentas y la identificación dentro del sis
     \caption{Detalle de la empresa}
     \label{figura: detallemp}
  \end{figure}
+
+ 
+ 
  \begin{figure}[h]
     \centering
-    \includegraphics[ width=15cm, keepaspectratio]{img/gooapi}
+    \includegraphics[ width=16cm, keepaspectratio]{img/gooapi}
     \caption{Consola de control de APIs de Google}
     \label{figura: gooapi}
  \end{figure}
-
  
 Otro recurso importante que utiliza la información sobre la empresa que se crea es la sección \emph{empresas}, en ella se muestra una lista de las empresas que se han ido incorporando al sistema con los datos del departamento y tutor mediante dos botones podemos entrar en el detalle de dicha empresa o directamente crear una encuesta sobre esa empresa. El usuario puede explorar esta lista  o utilizar el cuadro de búsqueda para encontrar la empresa por su nombre. Como es posible que en una misma empresa existan varios departamentos y tutores para realizar prácticas se pueden crear varios perfiles con el mismo nombre de empresa, variando los datos de departamento y tutor. La lista se muestra en bloques de cinco empresas por página por si el usuario quiere navegar y descubrir empresas pero la acción mas recomendable y cómoda es la de buscar por el nombre de la empresa.
 
@@ -632,11 +641,23 @@ Otro recurso importante que utiliza la información sobre la empresa que se crea 
     \label{figura: listaempresas}
  \end{figure}
  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[ width=12cm, keepaspectratio]{img/editemp}
+    \caption{Formulario de edición de empresa}
+    \label{figura: editemp}
+ \end{figure}
+ \begin{figure}[H]
+    \centering
+    \includegraphics[ width=12cm, keepaspectratio]{img/resulbusq}
+    \caption{Página de resultados de una búsqueda}
+    \label{figura: resulbusq}
+ \end{figure}
 \subsection{Preparación de las encuestas}
 \label{subsec:encuestas}
-Esta es otra de las fases fundamentales del proyecto, ya que se trata del momento de obtener las opiniones y observaciones de los alumnos sobre sus prácticas. A esta función se accede de varios puntos, como la lista de empresas, el detalle de las mismas o la lista de encuestas. Para que la información sea precisa en lo referente a la empresa, las encuestas irán vinculadas por nombre de la empresa, departamento y tutor, de modo que para completar una encuesta estos datos no es necesario que se rellenar a mano.\newline
-Para poder elaborar un formulario en múltiples pasos se utiliza la librería \emph{Django Formtools} que se integra dentro de Django. Con la ayuda de esa librería se crea una encuesta en cuatro bloques, de mayor a menor importancia de las preguntas que contienen. En el primer bloque de preguntas se realizan preguntas referentes a la temática de las prácticas, es decir, a que se ha dedicado el alumno en términos generales (programación, Electrónica, Gestión...) con un campo de texto opcional por si no encuentran la respuesta precisa, al mismo tiempo se pregunta sobre si se dotaba de ayudas al alumno(económica, transporte...) y su nivel de satisfacción con la empresa con el que se calcula la valoración media. Este primer bloque de preguntas es el único obligatorio de cumplimentar.
- \begin{figure}[h]
+Esta es una de las fases fundamentales del proyecto, ya que se trata del punto donde se obtienen las opiniones y observaciones de los alumnos sobre sus prácticas. A esta función se accede de varios puntos, como la lista de empresas, el detalle de las mismas o la lista de encuestas.  Con el objetivo de mantener la base de datos ordenada  cada nueva encuesta se vincula con la empresa, el departamento y el tutor, de este modo se las opiniones se irán agrupando por estos tres campos y facilitarán al usuario conocer las opiniones de otros alumnos que han realizado sus prácticas en el mismo sitio.\newline
+Para poder elaborar un formulario en múltiples pasos se utiliza la librería \emph{Django Formtools}. Con la ayuda de esa librería se crea una encuesta en cuatro bloques, de mayor a menor importancia de las preguntas que contienen. En el primer bloque de preguntas se realizan preguntas referentes a la temática de las prácticas, es decir, a que se ha dedicado el alumno en términos generales (programación, Electrónica, Gestión...) con un campo de texto opcional por si no encuentran la respuesta precisa, al mismo tiempo se pregunta sobre si se dotaba de ayudas al alumno(económica, transporte...) y su nivel de satisfacción con la empresa con el que se calcula la valoración media. Este primer bloque de preguntas es el único obligatorio de cumplimentar.
+ \begin{figure}[H]
     \centering
     \includegraphics[ width=9cm, keepaspectratio]{img/formul1}
     \caption{Primer bloque de preguntas de la encuesta}
@@ -644,7 +665,7 @@ Para poder elaborar un formulario en múltiples pasos se utiliza la librería \emp
  \end{figure}
  
  En el segundo bloque de preguntas se profundiza y se pregunta sobre si se trata de prácticas remuneradas, o si existe la posibilidad de una posterior contratación, la relación en términos generales, con el tutor y los requisitos previos necesarios para realizar las prácticas. en todo momento el alumno puede ir a cualquier paso para cambiar una respuesta o verificar que los datos son correctos.
-  \begin{figure}[h]
+  \begin{figure}[H]
     \centering
     \includegraphics[ width=8cm, keepaspectratio]{img/formul2}
     \caption{Segundo bloque de preguntas de la encuesta}
@@ -659,7 +680,7 @@ Para poder elaborar un formulario en múltiples pasos se utiliza la librería \emp
     \label{figura: formul3}
  \end{figure}
  Por último se solicitan un par de comentarios, sobre que conocimientos adquiridos se añadirían al curriculum del alumno o si hay algún comentario o recomendación adicional de relevancia.
- \begin{figure}[h]
+ \begin{figure}[H]
     \centering
     \includegraphics[ width=8cm, keepaspectratio]{img/formul4}
     \caption{Cuarto bloque de preguntas de la encuesta}
@@ -682,8 +703,17 @@ Todas las encuestas se muestran listadas en la sección \emph{Encuestas}. Como en
     \label{figura: listaenc}
  \end{figure}
  
-\subsection{Elaboración de la sección ayuda y pié de página}
+\subsection{Sección de ayuda y pie de página}
 \label{subsec:secayuda}
+
+Tras elaborar las secciones principales se decide añadir una sección de ayuda con la que intentar resolver las dudas que puedan surgir con el funcionamiento de la aplicación. Las preguntas se muestran en dos bloques en elementos desplegables. También se incorpora un pie de página indicando las vías de contacto con los administradores  y la licencia bajo la que se ha publicado esta aplicación web.
+\begin{figure}[H]
+    \centering
+    \includegraphics[ width=14cm, keepaspectratio]{img/ayuda}
+    \caption{Sección de ayuda}
+    \label{figura: listaenc}
+ \end{figure}
+
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -692,10 +722,32 @@ Todas las encuestas se muestran listadas en la sección \emph{Encuestas}. Como en
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
-\chapter{Resultados}
+\chapter{Despliegue y resultados}
 \label{chap:resultados}
+El objetivo de toda aplicación web es la de satisfacer las necesidades, dentro de los límites de la aplicación, de los usuarios a los que va dirigida. Del mismo modo que un cliente de correo que no nos permite leer los correos entrantes no sirve para nada, esta aplicación no servirá de nada si no permite a los usuarios introducir sus impresiones sobre sus prácticas de empresa de manera rápida y fácil al mismo tiempo que permite encontrar y leer las opiniones de otros usuarios con la misma rapidez y facilidad. Para comprobar si se han cumplido este y otros objetivos se realizan diversas pruebas.
 
+\section{Despliegue de la aplicación}
+\label{despliegueapp}
+\subsection{Servidor de desarrollo}
+\label{subsec:serverdesarrollo}
 
+Cuando se desarrolla una aplicación de cualquier tipo se hace necesario comprobar la integración y funcionalidad de los módulos que se van añadiendo a la misma. Como se ha mencionado anteriormente Django nos facilita un servidor de desarrollo que se ejecuta en nuestra máquina, en nuestro entorno preparado para ello. Este servidor permite acceder a los recursos de la aplicación del mismo modo que si se hiciera navegando por internet, es decir,
+con ayuda de un navegador web como cliente. Este cliente realiza las peticiones HTTP a nuestro servidor que con ayuda de nuestra base de datos y la lógica que se ha programado genera las respuestas oportunas y se las devuelve al cliente. Para ejecutar este servidor solo es necesario introducir desde el directorio de nuestro proyecto Django en la shell el comando  \emph{python manage.py runserver}. se puede indicar la IP y el puerto que deseamos, por defecto el servidor lo hace en la dirección IP local(\emph{localhost o 127.0.0.1} y a en un puerto libre que por defecto está establecido como 8000.
+\begin{figure}[H]
+    \centering
+    \includegraphics[ width=12cm, keepaspectratio]{img/shelldesp}
+    \caption{Lanzando el servidor de desarrollo desde la Shell }
+    \label{figura: localshell}
+ \end{figure}
+ Para acceder a la aplicación se introduce desde un navegador web la url \emph{localhost:8000 ó 127.0.0.1:8000}. Esto devuelve la página principal de nuestra aplicación. Podemos utilizar la IP de nuestra máquina en nuestra red local para lanzar el servidor y poder acceder desde cualquier dispositivo conectado a nuestra red local.
+ \begin{figure}[H]
+    \centering
+    \includegraphics[ width=12cm, keepaspectratio]{img/navegalocal}
+    \caption{URL para acceder a nuestro servidor de desarrollo}
+    \label{figura: localurl}
+ \end{figure}
+ 
+ Este servidor local es el que se ha utilizado para realizar todo el desarrollo de la aplicación. Paralelamente, de manera periódica se realizaba el despliegue en el servidor del servicio de alojamiento online \emph{Pythonanywhere}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
