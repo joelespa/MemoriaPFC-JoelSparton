@@ -192,6 +192,7 @@ it for correct grammar and spelling. As it is the translation of the ``Resumen''
 which is supposed to be written at the end, this as well should be filled out
 just before submitting.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -224,7 +225,7 @@ just before submitting.
 \label{sec:intro} % etiqueta para poder referenciar luego en el texto con ~\ref{sec:intro}
 \pagenumbering{arabic} % para empezar la numeración de página con números
 
-En este capítulo se realiza una breve introducción sobre el contenido de esta memoria, las webs de nuestros días y su evolución en el tiempo
+En este capítulo se realiza una breve introducción sobre el contenido de esta memoria: Las webs de nuestros días y su evolución en el tiempo
 
 %Motivación
 \section{Motivación}
@@ -310,13 +311,13 @@ Esta memoria está compuesta por seis bloques correspondientes a seis capítulos:
 
 \section{Objetivo general}
 \label{sec:objetivo-general}
-El objetivo general de este proyecto es la elaboración y puesta en marcha de una aplicación web (\textbf{WebApp}) con dos funciones: elaborar una base de datos de encuestas que contengan las condiciones y opiniones de los alumnos sobre sus prácticas en empresa y de forma paralela que esas opiniones sean accesibles a otros alumnos y les sean útiles a la hora de elegir una empresa donde realizarlas, o sirvan de respuesta ante las dudas que puedan surgir una vez que sean seleccionados.
+El objetivo general de este proyecto es la aplicación de los conocimientos adquiridos durante la carrera al mismo tiempo que se profundiza en ellos o se adquieren algunos nuevos en la elaboración y puesta en marcha de una aplicación web (\textbf{WebApp}) con dos funciones: elaborar una base de datos de encuestas que contengan las condiciones y opiniones de los alumnos sobre sus prácticas en empresa y de forma paralela que esas opiniones sean accesibles a otros alumnos y les sean útiles a la hora de elegir una empresa donde realizarlas, o sirvan de respuesta ante las dudas que puedan surgir una vez que sean seleccionados.
 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
-Los objetivos específicos que se persiguen en este proyecto son, por orden de importancia:
+Los objetivos específicos que se persiguen en este proyecto son:
 \begin{itemize}
-
+	
 	\item \textbf{Hacer uso de tecnologías actuales como HTML5, CSS y JavaScript:} Éstas, junto a \textbf{PHP y MySQL} son los pilares principales de cualquier web actual. Mediante la interacción entre estas tecnologías se construyen las principales WebApps y sitios de internet. Actualmente el dominio de estas tecnologías es una condición con alta demanda en ciertos sectores del mundo laboral lo que es un gran aliciente para mejorar en su manejo.
 	
 	\item \textbf{Facilitar el manejo de información en la aplicación:} Conseguir que generar y consultar información en la aplicación sea intuitivo y no provoque dudas a la hora de hacerlo. Por otra parte se busca que consultar información sea rápido y generar opiniones mediante las encuestas sea un proceso breve y eficiente.
@@ -613,9 +614,10 @@ Una vez que el usuario se ha registrado en el sistema tiene la opción de identif
 \subsection{Creación de perfiles de empresas}
 \label{subsec:registroemp}
 
-Tras completar la fase de creación de cuentas y la identificación dentro del sistema del usuario el siguiente paso en el desarrollo se centra en la creación de los perfiles de las empresas y las páginas que muestran esta información. Para ello se crea un formulario de creación de empresas en el que se solicitan: Nombre de la empresa, departamento, tutor y dirección. Esto genera el perfil de la empresa en el que se mostrarán los datos de la misma y su valoración media en forma de gráfico de estrellas, un mapa con su ubicación y a medida que se realicen las encuestas, los enlaces a las encuestas, indicando su autor y la valoración que el autor otorga a la empresa también en forma de gráfico de estrellas. Desde esta página se puede acceder a la edición de los datos de la empresa en un formulario similar al del registro de la empresa en el sistema. 
+Tras completar la fase de creación de cuentas y la identificación dentro del sistema del usuario el siguiente paso en el desarrollo se centra en la creación de los perfiles de las empresas y las páginas que muestran esta información. Para ello se crea un formulario de creación de empresas en el que se solicitan: Nombre de la empresa, departamento, tutor y dirección. Esto genera el perfil de la empresa en el que se mostrarán los datos de la misma y su valoración media en forma de gráfico de estrellas, un mapa con su ubicación y las las encuestas sobre la misma indicando su autor y la valoración que el autor otorga a la empresa. Desde esta página se puede acceder a la edición de los datos de la empresa en un formulario similar al del registro de la empresa en el sistema.
 
- Es en el detalle de la empresa donde entra en juego la API de Google Maps. Tras completar el registro en Google Developers\footnote{\url{https://developers.google.com}} se solicita el permiso de uso de las diferentes herramientas de interés, en el caso de este proyecto se utilizarán google Maps JavaScript API y Google Maps Geocoding API. Con la ayuda de la última se solicitan la coordenadas de la dirección de la empresa introducida por el usuario, la segunda toma la respuesta y genera el mapa con la ubicación de la empresa en el centro.
+ Es en el detalle de la empresa donde entra en juego la \textbf{API de Google Maps}. Tras completar el registro en Google Developers\footnote{\url{https://developers.google.com}} se solicita el permiso de uso de las diferentes herramientas de interés, en el caso de este proyecto se utilizarán \textbf{Google Maps Geocoding API y Google Maps JavaScript API}. Con la ayuda de la primera se solicitan la coordenadas de la dirección de la empresa introducida por el usuario, la segunda toma la respuesta y genera el mapa con la ubicación de la empresa en el centro. Todo esto ocurre en el lado del cliente mediante \emph{scripts} de \textbf{JavaScript} incrustados en el código \textbf{HTML5} que se envía como respuesta.
+ 
  \begin{figure}[H]
     \centering
     \includegraphics[ width=16cm, keepaspectratio]{img/detalleemp}
@@ -709,13 +711,20 @@ Todas las encuestas se muestran listadas en la sección \emph{Encuestas}. Como en
 Tras elaborar las secciones principales se decide añadir una sección de ayuda con la que intentar resolver las dudas que puedan surgir con el funcionamiento de la aplicación. Las preguntas se muestran en dos bloques en elementos desplegables. También se incorpora un pie de página indicando las vías de contacto con los administradores  y la licencia bajo la que se ha publicado esta aplicación web.
 \begin{figure}[H]
     \centering
-    \includegraphics[ width=14cm, keepaspectratio]{img/ayuda}
+    \includegraphics[ width=16cm, keepaspectratio]{img/ayuda}
     \caption{Sección de ayuda}
-    \label{figura: listaenc}
+    \label{figura: secayuda}
  \end{figure}
 
-
- 
+\subsection{Interfaz responsiva}
+\label{subsec:responsive}
+Al mismo tiempo que se implementa la lógica de la aplicación en la parte del servidor, se diseñan las páginas web que servirá como respuesta. Para ello se utiliza \textbf{Bootstrap}. La manera más sencilla de incorporar las funciones de este \emph{framework} es incorporar el enlace a las hojas de estilo del mismo en la plantilla base \textbf{HTML5} de las que heredan todas las demás platillas. De este modo basta con utilizar una nomenclatura concreta a la hora de incorporar las etiquetas que definen los diferentes elementos de la página web, para que dichos elementos se coloquen en un lugar determinado o tengan la forma o el color que se desea. Si se siguen ciertas reglas a la hora de establecer la posición de los diferentes elementos la posición de los mismos cambiará para adaptarse a la resolución en la que se muestran y para respetar las pautas de nuestro diseño.
+\begin{figure}[H]
+    \centering
+    \includegraphics[ width=7cm, keepaspectratio]{img/responsivomov}
+    \caption{Lista de empresas en pantalla de móvil}
+    \label{figura: responmovil}
+ \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % RESULTADOS %
@@ -736,20 +745,64 @@ con ayuda de un navegador web como cliente. Este cliente realiza las peticiones 
 \begin{figure}[H]
     \centering
     \includegraphics[ width=12cm, keepaspectratio]{img/shelldesp}
-    \caption{Lanzando el servidor de desarrollo desde la Shell }
+    \caption{Lanzando el servidor de desarrollo desde la Shell}
     \label{figura: localshell}
  \end{figure}
- Para acceder a la aplicación se introduce desde un navegador web la url \emph{localhost:8000 ó 127.0.0.1:8000}. Esto devuelve la página principal de nuestra aplicación. Podemos utilizar la IP de nuestra máquina en nuestra red local para lanzar el servidor y poder acceder desde cualquier dispositivo conectado a nuestra red local.
+ Para acceder a la aplicación se introduce desde un navegador web la url \emph{localhost:8000 ó 127.0.0.1:8000}. Esto devuelve la página principal de nuestra aplicación. 
  \begin{figure}[H]
     \centering
     \includegraphics[ width=12cm, keepaspectratio]{img/navegalocal}
     \caption{URL para acceder a nuestro servidor de desarrollo}
     \label{figura: localurl}
  \end{figure}
+ Se realiza otra prueba utilizando la IP de nuestra máquina en la red local para lanzar el servidor y poder acceder desde cualquier dispositivo conectado a dicha red, de este modo podemos probar si la aplicación se adapta a los dispositivos con pantalla y resolución mas reducida. si se busca acceder desde internet a nuestra red local es necesario solicitar el acceso al proveedor de acceso a Internet. Como se realizará el despliegue en un servicio de alojamiento online, se descarta esta opción.
+ \begin{figure}[H]
+    \centering
+    \includegraphics[ width=12cm, keepaspectratio]{img/shelllan}
+    \caption{Lanzando el servidor  de desarrollo desde la shell para funcionar en nuestra red local}
+    \label{figura: shellan}
+ \end{figure}
+ \begin{figure}[H]
+    \centering
+    \includegraphics[ width=7cm, keepaspectratio]{img/movillan}
+    \caption{Accediendo a la aplicación desde un móvil}
+    \label{figura: movillan}
+ \end{figure}
  
- Este servidor local es el que se ha utilizado para realizar todo el desarrollo de la aplicación. Paralelamente, de manera periódica se realizaba el despliegue en el servidor del servicio de alojamiento online \emph{Pythonanywhere}.
+ \subsection{Servicio de alojamiento}
+\label{subsec:serveralojamiento}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ El servidor local es el que se ha utilizado para realizar todo el desarrollo de la aplicación. Paralelamente, de manera periódica se realizaba el despliegue en el servidor del servicio de alojamiento online \emph{Pythonanywhere}. Este sitio ofrece una opción gratuita con la que se pueden desplegar pequeñas aplicaciones web que no utilicen o generen un tráfico o gasto de recursos del sistema excesivos.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[ width=12cm, keepaspectratio]{img/pythonany}
+    \caption{Interfaz de usuario de Pythonanywhere}
+    \label{figura: pythonany}
+ \end{figure}
+  Tras la creación de la cuenta se accede a la consola de comandos \emph{online} que ofrece el propio sitio. En ese momento se crea un entorno virtual que contiene una versión de Python a la que se pueden incorporar los paquetes que se necesiten, en este caso Django y un complemento para manejar archivos estáticos llamado \emph{Whitenoise}. Una vez que se tiene el entorno preparado se procede a la  descarga de la aplicación a través de la plataforma \emph{GitHub}, que se ha utilizado para realizar este despliegue y como copia de seguridad del proyecto. Basta con clonar desde la \emph{Shell} el repositorio Git que contiene la aplicación con el comando \emph{git clone https://github.com/joelespa/PFCJSA} que crea una copia de este repositorio en \emph{Pythonanywhere}.
+ 
+ \begin{figure}[H]
+    \centering
+    \includegraphics[ width=8cm, keepaspectratio]{img/pythonshell}
+    \caption{Consola de comandos de Pythonanywhere}
+    \label{figura: pythonany}
+ \end{figure}
+  
+ Una vez que se tienen los archivos de la aplicación correctamente situados se deben dar un par de pasos mas antes de poder acceder a la aplicación desde internet. Primero en la pestaña de configuración web se indica el directorio donde se encuentra la aplicación a desplegar y el entorno virtual utilizado. A continuación se establece la configuración WGSI\footnote{Web Server Gateway Interface: Estándar de Python para para definir la interfaz de comunicación entre servidores web y aplicaciones web o frameworks para Python como Django } y si todo se ha realizado correctamente, se recarga el sitio y la aplicación queda lista para el acceso desde internet.
+ 
+ \section{Resultados de las pruebas}
+\label{sec:resultrpueb}
+
+Tras publicar el sitio en internet se procede a comunicar a los usuarios que pueden comenzar a utilizar la aplicación, se reciben, en su gran mayoría, buenas impresiones sobre el aspecto visual y el uso de la aplicación y se obtiene buen feedback en el funcionamiento del sitio. Que parece no presentar errores cuando los usuarios acceden desde cualquier tipo de terminal. El haber realizado el despliegue en el sitio de manera paralela al desarrollo de la aplicación ha permitido que todo los problemas se hayan solucionado paulatinamente, por lo que la versión que llega a los usuarios  se encuentra bastante depurada. Al tener una finalidad bastante definida y no disponer de mucha información en pantalla que pueda confundir al usuario los problemas que se detectan son mas bien referidos a la parte estético que a la funcional.
+
+\section{Problemas encontrados}
+\label{sec:problemas}
+Como se ha mencionado la fase de despliegue se ha realizado a la vez que la de desarrollo y esto ha permitido eliminar un gran número de fallos o \emph{bugs} desde el principio. Una de las cuestiones a mejorar se el apartado de las encuestas donde los usuarios encuentran que las preguntas están demasiado juntas las unas de las otras y esto hace que las respuestas también lo estén, lo que dificulta un poco la respuesta de las mismas.\newline
+Otra cuestión que creó dificultades en el  despliegue de la aplicación es la edición del perfil de usuario, el principal problema era la manera en la que Django trata los formularios, pues realiza una validación del mismo antes de saber que se van a hacer con los datos que contiene, esto generaba que el formulario de edición del perfil del usuario no funcionase bien,ya que el nombre de usuario debe ser único en el sistema. Por esta cuestión y para mantener la integridad de la base de datos se ha decidido que el nombre de usuario que se elija no sea editable salvo causa de fuerza mayor, como pueden ser nombres de usuario ofensivos entre otras.. La edición de empresas por el contrario no presentó problemas\newline
+
+
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONCLUSIONES %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -757,41 +810,43 @@ con ayuda de un navegador web como cliente. Este cliente realiza las peticiones 
 \cleardoublepage
 \chapter{Conclusiones}
 \label{chap:conclusiones}
- En nuestro caso el \emph{framework} \textbf{Django} cumple todos los requisitos para crear nuestra aplicación ya que se trata de una herramienta que ya hemos utilizado previamente. Esto no evita que debamos pasar unas cuantas horas actualizando e incrementado nuestros conocimientos de la herramienta. Con \textbf{HTML5} tampoco ha habido grandes problemas una vez que se han. El esfuerzo en esta fase viene provocado por el escaso conocimiento del  \emph{framework} \textbf{Bootstrap} que en los primeros pasos puede ser algo mas complejo de lo que termina siendo una vez que se manejan bien un par de conceptos. Otro desafío ha sido actualizar los conocimientos 
-
-
 \section{Consecución de objetivos}
 \label{sec:consecucion-objetivos}
 
-Esta sección es la sección espejo de las dos primeras del capítulo de objetivos,
-donde se planteaba el objetivo general y se elaboraban los específicos.
 
-Es aquí donde hay que debatir qué se ha conseguido y qué no. Cuando algo no
-se ha conseguido, se ha de justificar, en términos de qué problemas se han
-encontrado y qué medidas se han tomado para mitigar esos problemas.
+Tras analizar los resultados con algo más de perspectiva se llega a varias conclusiones con las que dar cierre a esta memoria. La primera es que se ha conseguido construir una aplicación web que cumple sus dos funciones principales. Recopila los datos sobre las prácticas de empresa que los usuarios introducen y los guarda generando una base de datos de opiniones que, a su vez, se puede consultar por los mismos y otros usuarios para obtener información sobre las prácticas y resolver sus dudas sobre la conveniencia de determinada empresa o departamento para realizar unas prácticas de empresa. Con esto se puede dar por alcanzado uno de los objetivos generales de este proyecto.  La segunda conclusión a la que se llega es que el otro de los objetivos generales también ha sido alcanzado de manera satisfactoria, se han aplicado una buena parte de los conocimientos adquiridos durante los diferentes cursos de esta carrera. \newline
 
+
+\section{Objetivos específicos }
+\label{sec:objetivosespec}
+
+En lo referente a la búsqueda de hacer uso de tecnologías web actuales en el desarrollo web, como HTML5, CSS o JavaScript el resultado ha sido muy satisfactorio. Todas las páginas web que genera la aplicación están escritas en HTML5, utilizando, en muchos casos, las etiquetas y atributos que se han introducido en esta nueva versión. Al mismo tiempo, todas las páginas que sirve la aplicación han sido dotadas de estilo con CSS y se han aprovechado las virtudes de JavaScript para animar algunas partes de las páginas sin necesidad de hacer solicitudes nuevas al servidor. También se ha conseguido componer una interfaz atractiva y agradable con la ayuda de Bootstrap. Esta interfaz hace posible que se consiga otro de los objetivos específicos como es el de facilitar el manejo de la información en la aplicación. Se han añadido secciones de búsqueda que facilitan el acceso a la información que se desea encontrar y se ha creado un formulario que recogerá en solo cuatro pasos, la opinión del usuario sobre sus prácticas de empresa. Gracias a la ayuda de Bootstrap también se ha conseguido elaborar una interfaz responsiva que se adapta a la resolución del dispositivo donde se muestra, algo que a día de hoy era de obligado cumplimiento dada la gran variedad de dispositivos de distintos tamaños con los que se accede hoy a internet. Por último se ha conseguido la integración de Google Maps en la aplicación. Esto ha sido relativamente fácil ya que un gigante del tamaño de Google tiene todo pensado a día de hoy. Por lo tanto, se puede asegurar que los objetivos tanto generales como específicos han sido todos alcanzados. 
 
 \section{Aplicación de lo aprendido}
 \label{sec:aplicacion}
 
-Aquí viene lo que has aprendido durante el Grado/Máster y que has aplicado
-en el TFG/TFM. Una buena idea es poner las asignaturas más relacionadas y
-comentar en un párrafo los conocimientos y habilidades puestos en práctica.
+Durante la realización de este proyecto se han aplicado en mayor o menor medida, los conocimientos de las siguientes asignaturas:
 
 \begin{enumerate}
-  \item a
-  \item b
+  \item Fundamentos de la Programación.
+  \item Sistemas Telemáticos I y II.
+  \item Información Audiovisual en Redes de Ordenadores.
+  \item Sistema y Aplicaciones Telemáticas.
 \end{enumerate}
+
+En estas asignaturas se tratan diversos aspectos que se ven involucrados en el desarrollo de aplicaciones web. En ellas se dota al alumno de una base de conocimientos en lo que se refiere a la programación que ayuda a perder el miedo a la hora de afrontar el reto de programar en otros lenguajes de programación que no se conocen o se conocen poco como JavaScript o CSS. También se aprende a entender el modelo cliente-servidor que rige Internet hoy en día además de aprender a utilizar algunos de los protocolos de comunicación que se utilizan en la red. Aunque los protocolos no eran el tema a tratar en este proyecto conocer la estructura de las peticiones HTTP ayuda a entender y programar en Django. En todas estas asignaturas se dota al alumno de herramientas para el aprendizaje al mismo tiempo que se le anima a investigar e innovar para encontrar solución a los problemas que le surjan.    
 
 
 \section{Lecciones aprendidas}
 \label{sec:lecciones_aprendidas}
 
-Aquí viene lo que has aprendido en el Trabajo Fin de Grado/Máster.
+Tal y como se ha mencionado anteriormente, ya se tenia una base en algunas de las tecnologías utilizadas, esto no ha impedido que se debieran mejorar en gran medida dichos conocimientos o que se hayan adquirido algunos nuevos.
 
 \begin{enumerate}
-  \item a
-  \item b
+  \item Fundamentos de la Programación.
+  \item Sistemas Telemáticos I y II.
+  \item Información Audiovisual en Redes de Ordenadores.
+  \item Sistema y Aplicaciones Telemáticas. 
 \end{enumerate}
 
 
